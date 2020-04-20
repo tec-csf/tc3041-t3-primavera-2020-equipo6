@@ -1,8 +1,10 @@
 import csv
 import json
 import random
-from datetime import date
 import time
+
+from datetime import date
+from pymongo import MongoClient
 
 names = ['albattani', 'allen', 'almeida', 'agnesi', 'archimedes', 'ardinghelli', 'aryabhata', 'austin', 'babbage', 'banach', 'bardeen', 'bartik', 'bassi', 'beaver', 'bell', 'benz', 'bhabha', 'bhaskara', 'blackwell', 'bohr', 'booth', 'borg', 'bose', 'boyd', 'brahmagupta', 'brattain', 'brown', 'carson', 'chandrasekhar', 'chaplygin', 'chatterjee', 'chebyshev', 'shannon', 'clarke', 'colden', 'cori', 'cray', 'curran', 'curie', 'darwin', 'davinci', 'dijkstra', 'dubinsky', 'easley', 'edison', 'einstein', 'elion', 'elbakyan', 'engelbart', 'euclid', 'euler', 'fermat', 'fermi', 'feynman', 'franklin', 'galileo', 'gates', 'goldberg', 'goldstine', 'goldwasser', 'golick', 'goodall', 'haibt', 'hamilton', 'hawking', 'heisenberg', 'hermann', 'heyrovsky', 'hodgkin', 'hoover', 'hopper', 'hugle', 'hypatia', 'jackson', 'jang', 'jennings', 'jepsen', 'johnson', 'joliot', 'jones', 'kalam', 'kapitsa', 'kare', 'keldysh', 'keller', 'kepler', 'khorana', 'kilby', 'kirch', 'knuth', 'kowalevski', 'lalande', 'lamarr', 'lamport', 'leakey', 'leavitt', 'lewin', 'lichterman', 'liskov', 'lovelace', 'lumiere', 'mahavira', 'mayer', 'mccarthy', 'mcclintock', 'mclean', 'mcnulty', 'mendeleev', 'meitner', 'meninsky', 'mestorf', 'minsky', 'mirzakhani', 'morse', 'murdock', 'neumann', 'newton', 'nightingale', 'nobel', 'noether', 'northcutt', 'noyce', 'panini', 'pare', 'pasteur', 'payne', 'perlman', 'pike', 'poincare', 'poitras', 'proskuriakova', 'ptolemy', 'raman', 'ramanujan', 'ride', 'montalcini', 'ritchie', 'roentgen', 'rosalind', 'saha', 'sammet', 'shaw', 'shirley', 'shockley', 'sinoussi', 'snyder', 'spence', 'stallman', 'shtern', 'stonebraker', 'swanson', 'swartz', 'swirles', 'tereshkova', 'tesla', 'thompson', 'torvalds', 'turing', 'varahamihira', 'vaughan', 'visvesvaraya', 'volhard', 'villani', 'wescoff', 'wiles', 'williams', 'wilson', 'wing', 'wozniak', 'wright', 'yalow', 'yonath', 'zhukovsky', ]
 
@@ -19,8 +21,6 @@ tipos = ['Clasica', 'VIP', '3D', '4D', 'IMAX']
 cines = ['Cinemex ', 'Cinepolis ', 'Cinemark ', 'Autocinema Coyote ']
 
 def genActor(size):
-  # field names  
-  fields = ['_id', 'nombre', 'edad', 'pais']
   rows = []
   names_size = len(names)
   countries_size = len(countries)
@@ -29,15 +29,17 @@ def genActor(size):
     nombre = names[random.randint(0, names_size-1)] + " " + names[random.randint(0, names_size-1)]
     edad = random.randint(0, 100)
     pais = countries[random.randint(0, countries_size-1)]
-    entry = [i, nombre, edad, pais]
-    # data rows of csv file
-    rows.append(entry)
+    dictionary = {
+      '_id': i,
+      'nombre': nombre,
+      'edad': edad,
+      'pais':pais
+    }
+    rows.append(dictionary)
   
-  return [fields, rows]
+  return rows
 
 def genDirector(size):
-  # field names  
-  fields = ['_id', 'nombre', 'titulo', 'estilo']
   rows = []
   names_size = len(names)
   carreras_size = len(carreras)
@@ -47,15 +49,17 @@ def genDirector(size):
     nombre = names[random.randint(0, names_size-1)] + " " + names[random.randint(0, names_size-1)]
     carrera = carreras[random.randint(0, carreras_size-1)]
     estilo = estilos[random.randint(0, estilos_size-1)]
-    entry = [i, nombre, carrera, estilo]
-    # data rows of csv file
-    rows.append(entry)
+    dictionary = {
+      '_id': i,
+      'nombre': nombre,
+      'titulo': carrera,
+      'estilo': estilo
+    }
+    rows.append(dictionary)
   
-  return [fields, rows]
+  return rows
 
 def genPelicula(size, director_range, actor_range):
-  # field names  
-  fields = ['_id', 'nombre', 'ano', 'id_director', 'id_actor']
   rows = []
   carreras_size = len(carreras)
   estilos_size = len(estilos)
@@ -65,30 +69,37 @@ def genPelicula(size, director_range, actor_range):
     ano = random.randint(1900, 2020)
     id_director = genForeignIds(director_range, 1)
     id_actor = genForeignIds(actor_range, 10)
-    entry = [i, nombre, ano, id_director, id_actor]
-    # data rows of csv file
-    rows.append(entry)
+    dictionary = {
+      '_id': i,
+      'nombre': nombre,
+      'ano': ano,
+      'id_director': id_director,
+      'id_actor': id_actor
+    }
+    rows.append(dictionary)
   
-  return [fields, rows]
+  return rows
 
 def genProyeccion(size, pelicula_range):
   # field names  
-  fields = ['_id', 'horario', 'precio', 'id_pelicula']
   rows = []
 
   for i in range(size):
     horario = genRandomDate()
     precio = random.randint(60, 200)
     id_pelicula = genForeignIds(pelicula_range, 1)
-    entry = [i, horario, precio, id_pelicula]
     # data rows of csv file
-    rows.append(entry)
+    dictionary = {
+      '_id': i,
+      'horario': horario,
+      'precio': precio,
+      'id_pelicula': id_pelicula
+    }
+    rows.append(dictionary)
   
-  return [fields, rows]
+  return rows
 
 def genSala(size, proyeccion_range):
-  # field names  
-  fields = ['_id', 'numero', 'asientos', 'tipo', 'id_proyeccion']
   rows = []
   tipos_size = len(tipos)
 
@@ -97,15 +108,19 @@ def genSala(size, proyeccion_range):
     asientos = random.randint(50, 100)
     tipo = tipos[random.randint(0, tipos_size-1)]
     id_proyeccion = genForeignIds(proyeccion_range, 1)
-    entry = [i, numero, asientos, tipo, id_proyeccion]
-    # data rows of csv file
-    rows.append(entry)
+    dictionary = {
+      '_id': i,
+      'numero': numero,
+      'asientos': asientos,
+      'tipo': tipo,
+      'id_proyeccion': id_proyeccion
+    }
+    rows.append(dictionary)
   
-  return [fields, rows]
+  return rows
 
 def genCine(size, sala_range):
   # field names  
-  fields = ['_id', 'nombre', 'ubicacion', 'id_sala']
   rows = []
   cines_size = len(cines)
   locations = readCsvFile("location.csv")
@@ -123,8 +138,6 @@ def genCine(size, sala_range):
       "coordinates" : coords
     }
     id_sala = genForeignIds(sala_range, 15)
-    entry = [i, nombre, ubicacion, id_sala]
-    # data rows of csv file
     dictionary ={ 
       "_id" : i, 
       "nombre" : nombre, 
@@ -133,7 +146,7 @@ def genCine(size, sala_range):
     }
     rows.append(dictionary)
   
-  return [fields, rows]
+  return rows
 
 def genRandomDate():
   timestamp = int(time.time())
@@ -152,12 +165,10 @@ def genPeliculaName(maxN):
 
 def genForeignIds(idRange, maxIds):
   n = random.randint(1, maxIds)
-  res = ""
+  res = []
   for i in range(n):
     index = random.randint(0,idRange-1)
-    res += str(index)
-    if i < n-1:
-      res += " "
+    res.append(str(index))
   return res
 
 def writeToFile(filename, fields, rows):
@@ -209,29 +220,51 @@ def getRandomLocations(locations, n):
     results.append([location[0], location[5]])
   return results
 
+def connectToDb(password):
+  client = MongoClient("mongodb+srv://dbUser:" + password + "@tarea3-apbg3.gcp.mongodb.net/test?retryWrites=true&w=majority")
+  db = client.Cartelera
+  return db
+
+def insertToDb(collection, document):
+  collection.insert_many(document)
+
 def main():
-  filename = "gen/actores.csv"
-  [columnas, actores] = genActor(100000)
-  writeToFile(filename, columnas, actores)
+  db = connectToDb("x3jPieXWD5lEXmPr")
 
-  filename = "gen/directores.csv"
-  [columnas, directores] = genDirector(100000)
-  writeToFile(filename, columnas, directores)
+  filename = "gen/actores.json"
+  actores = genActor(100000)
+  writeToJson(filename, actores)
+  actor_c = db.actor
+  insertToDb(actor_c, actores)
 
-  filename = "gen/peliculas.csv"
-  [columnas, peliculas] = genPelicula(100000, len(directores), len(actores))
-  writeToFile(filename, columnas, peliculas)
+  filename = "gen/directores.json"
+  directores = genDirector(100000)
+  writeToJson(filename, directores)
+  director_c = db.director
+  insertToDb(director_c, directores)
 
-  filename = "gen/proyecciones.csv"
-  [columnas, proyeccion] = genProyeccion(100000, len(peliculas))
-  writeToFile(filename, columnas, proyeccion)
+  filename = "gen/peliculas.json"
+  peliculas = genPelicula(100000, len(directores), len(actores))
+  writeToJson(filename, peliculas)
+  pelicula_c = db.pelicula
+  insertToDb(pelicula_c, peliculas)
 
-  filename = "gen/salas.csv"
-  [columnas, salas] = genSala(100000, len(proyeccion))
-  writeToFile(filename, columnas, salas)
+  filename = "gen/proyecciones.json"
+  proyecciones = genProyeccion(100000, len(peliculas))
+  writeToJson(filename, proyecciones)
+  proyeccion_c = db.proyeccion
+  insertToDb(proyeccion_c, proyecciones)
+
+  filename = "gen/salas.json"
+  salas = genSala(100000, len(proyecciones))
+  writeToJson(filename, salas)
+  sala_c = db.sala
+  insertToDb(sala_c, salas)
 
   filename = "gen/cines.json"
-  [columnas, cines] = genCine(100000, len(salas))
+  cines = genCine(100000, len(salas))
   writeToJson(filename, cines)
+  cin = db.cine
+  insertToDb(cin, cines)
 
 main()
