@@ -229,7 +229,7 @@ def insertToDb(collection, document):
   collection.insert_many(document)
 
 def main():
-  db = connectToDb("x3jPieXWD5lEXmPr")
+  db = connectToDb("")
 
   filename = "gen/actores.json"
   actores = genActor(100000)
