@@ -29,11 +29,13 @@ def genActor(size):
     nombre = names[random.randint(0, names_size-1)] + " " + names[random.randint(0, names_size-1)]
     edad = random.randint(0, 100)
     pais = countries[random.randint(0, countries_size-1)]
+    amigos = genForeignIds(size, 5)
     dictionary = {
       '_id': i,
       'nombre': nombre,
       'edad': edad,
-      'pais':pais
+      'pais':pais,
+      'amigos': amigos
     }
     rows.append(dictionary)
   
@@ -43,17 +45,14 @@ def genDirector(size):
   rows = []
   names_size = len(names)
   carreras_size = len(carreras)
-  estilos_size = len(estilos)
 
   for i in range(size):
     nombre = names[random.randint(0, names_size-1)] + " " + names[random.randint(0, names_size-1)]
     carrera = carreras[random.randint(0, carreras_size-1)]
-    estilo = estilos[random.randint(0, estilos_size-1)]
     dictionary = {
       '_id': i,
       'nombre': nombre,
-      'titulo': carrera,
-      'estilo': estilo
+      'titulo': carrera
     }
     rows.append(dictionary)
   
@@ -67,12 +66,14 @@ def genPelicula(size, director_range, actor_range):
   for i in range(size):
     nombre = genPeliculaName(5)
     ano = random.randint(1900, 2020)
+    estilo = estilos[random.randint(0, estilos_size-1)]
     id_director = genForeignIds(director_range, 1)
     id_actor = genForeignIds(actor_range, 10)
     dictionary = {
       '_id': i,
       'nombre': nombre,
       'ano': ano,
+      'estilo': estilo,
       'id_director': id_director,
       'id_actor': id_actor
     }
@@ -165,6 +166,8 @@ def genPeliculaName(maxN):
 
 def genForeignIds(idRange, maxIds):
   n = random.randint(1, maxIds)
+  if maxIds == 1:
+    return random.randint(0,idRange-1)
   res = []
   for i in range(n):
     index = random.randint(0,idRange-1)
@@ -228,6 +231,9 @@ def connectToDb(password):
 def insertToDb(collection, document):
   collection.insert_many(document)
 
+def dropCollection(collection):
+  collection.delete_many({})
+
 def main():
   db = connectToDb("x3jPieXWD5lEXmPr")
 
@@ -235,36 +241,42 @@ def main():
   actores = genActor(100000)
   writeToJson(filename, actores)
   actor_c = db.actor
+  dropCollection(actor_c)
   insertToDb(actor_c, actores)
 
   filename = "gen/directores.json"
   directores = genDirector(100000)
   writeToJson(filename, directores)
   director_c = db.director
+  dropCollection(director_c)
   insertToDb(director_c, directores)
 
   filename = "gen/peliculas.json"
   peliculas = genPelicula(100000, len(directores), len(actores))
   writeToJson(filename, peliculas)
   pelicula_c = db.pelicula
+  dropCollection(pelicula_c)
   insertToDb(pelicula_c, peliculas)
 
   filename = "gen/proyecciones.json"
   proyecciones = genProyeccion(100000, len(peliculas))
   writeToJson(filename, proyecciones)
   proyeccion_c = db.proyeccion
+  dropCollection(proyeccion_c)
   insertToDb(proyeccion_c, proyecciones)
 
   filename = "gen/salas.json"
   salas = genSala(100000, len(proyecciones))
   writeToJson(filename, salas)
   sala_c = db.sala
+  dropCollection(sala_c)
   insertToDb(sala_c, salas)
 
   filename = "gen/cines.json"
   cines = genCine(100000, len(salas))
   writeToJson(filename, cines)
-  cin = db.cine
-  insertToDb(cin, cines)
+  cine_c = db.cine
+  dropCollection(cine_c)
+  insertToDb(cine_c, cines)
 
 main()
