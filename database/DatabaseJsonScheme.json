@@ -1,0 +1,371 @@
+{
+    "$schema": "actor",
+    "type": "object",
+    "required": [
+        "_id",
+        "nombre",
+        "edad",
+        "pais",
+        "amigos"
+    ],
+    "properties": {
+        "_id": {
+            "type": "integer",
+            "description": "ID que identifica al actor numericamente.",
+            "default": 0,
+            "examples": [
+                0.0
+            ]
+        },
+        "nombre": {
+            "type": "string",
+            "description": "Nombre y apellido del actor contenido en un solo string.",
+            "default": "",
+            "examples": [
+                "turing heisenberg"
+            ]
+        },
+        "edad": {
+            "type": "integer",
+            "description": "Edad numerica del actor.",
+            "default": 0,
+            "examples": [
+                13.0
+            ]
+        },
+        "pais": {
+            "type": "string",
+            "description": "País de origen del actor.",
+            "default": "",
+            "examples": [
+                "Morocco"
+            ]
+        },
+        "amigos": {
+            "type": "array",
+            "description": "Arreglo que contiene los ID de los amigos (actores) del actor.",
+            "default": [],
+            "examples": [
+                [
+                    20588.0,
+                    70629.0,
+                    1229.0
+                ]
+            ],
+            "items": {
+                "type": "integer",
+                "description": "ID numerico que identifica al actor.",
+                "default": 0,
+                "examples": [
+                    20588.0,
+                    70629.0,
+                    1229.0
+                ]
+            }
+        }
+    }
+}
+{
+    "$schema": "director",
+    "type": "object",
+    "required": [
+        "_id",
+        "nombre",
+        "titulo"
+    ],
+    "properties": {
+        "_id": {
+            "type": "integer",
+            "description": "ID numerica que idenitifca al director.",
+            "default": 0,
+            "examples": [
+                0.0
+            ]
+        },
+        "nombre": {
+            "type": "string",
+            "description": "Nombre y apellido del director contenido en un solo string.",
+            "default": "",
+            "examples": [
+                "varahamihira fermi"
+            ]
+        },
+        "titulo": {
+            "type": "string",
+            "description": "Nombre de la carrera tecnica del director (su titulo).",
+            "default": "",
+            "examples": [
+                "Ingeniero Biomédico"
+            ]
+        }
+    }
+}
+{
+    "$schema": "pelicula",
+    "type": "object",
+    "required": [
+        "_id",
+        "nombre",
+        "ano",
+        "estilo",
+        "id_director",
+        "id_actor"
+    ],
+    "properties": {
+        "_id": {
+            "type": "integer",
+            "description": "ID numerico que identifica a la pelicula.",
+            "default": 0,
+            "examples": [
+                0.0
+            ]
+        },
+        "nombre": {
+            "type": "string",
+            "description": "Nombre de la pelicula.",
+            "default": "",
+            "examples": [
+                "crear"
+            ]
+        },
+        "ano": {
+            "type": "integer",
+            "description": "Ano numerico que identifica en que año salio la pelicula.",
+            "default": 0,
+            "examples": [
+                1980.0
+            ]
+        },
+        "estilo": {
+            "type": "string",
+            "description": "Tipo de estilo cinematografico (Musical, Catastrofe, Terror, etc) .",
+            "default": "",
+            "examples": [
+                "Cine bélico"
+            ]
+        },
+        "id_director": {
+            "type": "integer",
+            "description": "ID numerico del director que dirigio la pelicula.",
+            "default": 0,
+            "examples": [
+                98184.0
+            ]
+        },
+        "id_actor": {
+            "type": "array",
+            "description": "Arreglo de las ID de los actores que actuaron en la pelicula.",
+            "default": [],
+            "examples": [
+                [
+                    26855.0,
+                    19392.0,
+                    94389.0
+                ]
+            ],
+            "items": {
+                "type": "integer",
+                "description": "ID numerico que identifica al actor.",
+                "default": 0,
+                "examples": [
+                    26855.0,
+                    19392.0,
+                    94389.0
+                ]
+            }
+        }
+    }
+}
+{
+    "$schema": "proyeccion",
+    "type": "object",
+    "required": [
+        "_id",
+        "horario",
+        "precio",
+        "id_pelicula"
+    ],
+    "properties": {
+        "_id": {
+            "type": "integer",
+            "description": "ID numerica que identifica a la proyección.",
+            "default": 0,
+            "examples": [
+                0.0
+            ]
+        },
+        "horario": {
+            "type": "integer",
+            "description": "Numero que identifica fecha y hora, es convertido a formato 00-00-0000 T00:00:00 en la aplicacion.",
+            "default": 0,
+            "examples": [
+                1589990073.0
+            ]
+        },
+        "precio": {
+            "type": "integer",
+            "description": "Precio de la proyeccion para ver la pelicula.",
+            "default": 0,
+            "examples": [
+                170.0
+            ]
+        },
+        "id_pelicula": {
+            "type": "integer",
+            "description": "ID numerico que identifica la pelicula siendo proyectada.",
+            "default": 0,
+            "examples": [
+                27396.0
+            ]
+        }
+    }
+}
+{
+    "$schema": "sala",
+    "type": "object",
+    "required": [
+        "_id",
+        "numero",
+        "asientos",
+        "tipo",
+        "id_proyeccion"
+    ],
+    "properties": {
+        "_id": {
+            "type": "integer",
+            "description": "ID numerico que identifica la sala.",
+            "default": 0,
+            "examples": [
+                0.0
+            ]
+        },
+        "numero": {
+            "type": "integer",
+            "description": "Numero de la sala, por lo general hay 1-15 salas en un cine.",
+            "default": 0,
+            "examples": [
+                9.0
+            ]
+        },
+        "asientos": {
+            "type": "integer",
+            "description": "Número de asientos en la sala.",
+            "default": 0,
+            "examples": [
+                79.0
+            ]
+        },
+        "tipo": {
+            "type": "string",
+            "description": "Tipo de sala, por ejemplo: Normal, 3D, VIP, 4D, etc.",
+            "default": "",
+            "examples": [
+                "4D"
+            ]
+        },
+        "id_proyeccion": {
+            "type": "integer",
+            "description": "ID numerico de la proyeccion que se proyectará en la sala.",
+            "default": 0,
+            "examples": [
+                43849.0
+            ]
+        }
+    }
+}
+{
+    "$schema": "cine",
+    "type": "object",
+    "required": [
+        "_id",
+        "nombre",
+        "ubicacion",
+        "id_sala"
+    ],
+    "properties": {
+        "_id": {
+            "type": "integer",
+            "description": "ID numerico que identifica al cine.",
+            "default": 0,
+            "examples": [
+                0.0
+            ]
+        },
+        "nombre": {
+            "type": "string",
+            "description": "Nombre del cine.",
+            "default": "",
+            "examples": [
+                "Cinemex Calumet City"
+            ]
+        },
+        "ubicacion": {
+            "type": "object",
+            "description": "Ubicacion del cine en coordenadas (LAT,LON).",
+            "default": {},
+            "examples": [
+                {
+                    "coordinates": [
+                        -87.5294871,
+                        41.6155909
+                    ],
+                    "type": "Point"
+                }
+            ],
+            "required": [
+                "type",
+                "coordinates"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Tipo de ubicacion, en este caso, es un punto en el mapa.",
+                    "default": "",
+                    "examples": [
+                        "Point"
+                    ]
+                },
+                "coordinates": {
+                    "type": "array",
+                    "description": "Coordenadas del punto en el mapa, contenidos en un arreglo.",
+                    "default": [],
+                    "examples": [
+                        [
+                            -87.5294871,
+                            41.6155909
+                        ]
+                    ],
+                    "items": {
+                        "type": "number",
+                        "description": "Latitud y Longitud de las coordenadas",
+                        "default": 0,
+                        "examples": [
+                            -87.5294871,
+                            41.6155909
+                        ]
+                    }
+                }
+            }
+        },
+        "id_sala": {
+            "type": "array",
+            "description": "ID de las salas que hay en el cine, contenidos en un arreglo.",
+            "default": [],
+            "examples": [
+                [
+                    41113.0,
+                    76121.0
+                ]
+            ],
+            "items": {
+                "type": "integer",
+                "description": "ID que identifica la sala.",
+                "default": 0,
+                "examples": [
+                    41113.0,
+                    76121.0
+                ]
+            }
+        }
+    }
+}
