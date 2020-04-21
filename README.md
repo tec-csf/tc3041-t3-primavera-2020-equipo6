@@ -52,8 +52,6 @@ A continuación aparecen descritos los diferentes elementos que forman parte de 
 
 ### 2.1 Modelo de la *base de datos* 
 
-*[Incluya aquí el modelo JSON Schema y explique los patrones utilizados en cada caso.*
-
 [Modelo JSON Schema](database/DatabaseJsonScheme.json)
 
 Este modelo fue creado en la página web: https://jsonschema.net/ [Version Draft-07]
