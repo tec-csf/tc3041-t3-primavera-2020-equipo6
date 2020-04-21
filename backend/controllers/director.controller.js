@@ -35,7 +35,7 @@ exports.findAll = (req, res) => {
   const nombre = req.query.nombre;
   var condition = nombre ? { nombre: { $regex: new RegExp(nombre), $options: "i" } } : {};
 
-  Director.find(condition)
+  Director.find(condition).limit(20)
     .then(data => {
       res.send(data);
     })
