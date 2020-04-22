@@ -1,3 +1,6 @@
+const db = require("../models");
+const Actor = db.actors;
+
 // Create and Save a new Actor
 exports.create = (req, res) => {
 
