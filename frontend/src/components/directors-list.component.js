@@ -128,15 +128,15 @@ export default class DirectorsList extends Component {
                 </li>
               ))}
           </ul>
-
-          <button
-            className="m-3 btn btn-sm btn-danger"
-            onClick={this.removeAllDirectors}
-          >
-            Remove All
-          </button>
         </div>
         <div className="col-md-6">
+          <Link to="/addDirector">
+            <button
+              className="m-3 btn btn-sm btn-dark"
+            >
+              Add Director
+            </button>
+          </Link>
           {currentDirector ? (
             <div>
               <h4>Director</h4>
@@ -167,11 +167,11 @@ export default class DirectorsList extends Component {
               </Link>
             </div>
           ) : (
-            <div>
-              <br />
-              <p>Please click on a Director...</p>
-            </div>
-          )}
+              <div>
+                <br />
+                <p>Please click on a Director...</p>
+              </div>
+            )}
         </div>
       </div>
     );
