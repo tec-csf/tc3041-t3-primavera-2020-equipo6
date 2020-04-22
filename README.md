@@ -52,11 +52,14 @@ A continuación aparecen descritos los diferentes elementos que forman parte de 
 
 ### 2.1 Modelo de la *base de datos* 
 
-*[Incluya aquí el modelo JSON Schema y explique los patrones utilizados en cada caso.*
+[Modelo JSON Schema](database/DatabaseJsonScheme.json)
+
+Este modelo fue creado en la página web: https://jsonschema.net/ [Version Draft-07]
+Cada documento consiste de un schema, el cual contiene un tipo, variables requeridas y sus propiedades. En sus propiedades, se encuentra el schema de cada una de las variables, el cual incluye: su tipo (si es integer, string, object, etc), una descripcion y un ejemplo del mismo. Si la variable llega a ser un objeto, aplica la misma funcionalidad, donde se describe cada una de sus propiedades d ela misma manera. Finalmente, si la variable es un arreglo, se describen las propiedades de los items dentro de ese arreglo.
 
 ### 2.2 Arquitectura de la solución
 
-*[Incluya aquí un diagrama donde se aprecie la arquitectura de la solución propuesta, así como la interacción entre los diferentes componentes de la misma.]*
+![](database/Diagrama.png)
 
 ### 2.3 Frontend
 
