@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SalaDataService from "../services/Sala.service";
+import SalaDataService from "../services/sala.service";
 
 export default class AddSala extends Component {
   constructor(props) {

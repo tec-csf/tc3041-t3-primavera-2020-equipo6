@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SalaDataService from "../services/Sala.service";
+import SalaDataService from "../services/sala.service";
 import { Link } from "react-router-dom";
 
 export default class SalasList extends Component {

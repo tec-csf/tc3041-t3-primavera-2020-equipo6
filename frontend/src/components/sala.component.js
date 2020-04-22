@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SalaDataService from "../services/Sala.service";
+import SalaDataService from "../services/sala.service";
 
 export default class Sala extends Component {
   constructor(props) {
@@ -43,7 +43,7 @@ export default class Sala extends Component {
   onChangeNumero(e) {
     const numero = e.target.value;
 
-    this.setState(prevstate =>({
+    this.setState(prevState =>({
         currentSala: {
           ...prevState.currentSala,
           numero: numero

@@ -25,8 +25,8 @@ class ProyeccionDataService {
     return http.delete(`/proyeccions`);
   }
 
-  findByNombre(title) {
-    return http.get(`/proyeccions?nombre=${title}`);
+  findByPrecio(title) {
+    return http.get(`/proyeccions?precio=${title}`);
   }
 }
 
