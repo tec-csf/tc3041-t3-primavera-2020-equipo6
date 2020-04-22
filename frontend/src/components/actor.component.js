@@ -14,7 +14,7 @@ export default class Actor extends Component {
     this.deleteActor = this.deleteActor.bind(this);
 
     this.state = {
-      currentDirector: {
+      currentActor: {
         id: null,
         nombre: "",
         edad: null,
