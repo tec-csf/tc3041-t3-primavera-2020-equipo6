@@ -5,6 +5,7 @@ module.exports = mongoose => {
       nombre: String,
       edad: Number,
       pais: String,
+      amigos:[Number],
     },
   );
 
