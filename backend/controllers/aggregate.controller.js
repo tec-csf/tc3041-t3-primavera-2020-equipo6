@@ -110,45 +110,27 @@ exports.nation = (req, res) => {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
-  Actor.aggregate([
-    // Groups movies by director's education and by genre
+  const pais = req.params.pais;
+  Pelicula.aggregate([
+    { $limit: 20 },
     {
-      '$sort': {
-        'ano': -1
-      }
-    }, {
-      '$lookup': {
-        'from': 'director', 
-        'localField': 'id_director', 
+      $lookup: {
+        'from': 'actor', 
+        'localField': 'id_actor', 
         'foreignField': '_id', 
-        'as': 'id_director'
+        'as': 'id_actor'
       }
     }, {
-      '$unwind': {
-        'path': '$id_director'
+      $unwind: {
+        'path': '$id_actor'
       }
     }, {
-      '$facet': {
-        'porEstilo': [
-          {
-            '$group': {
-              '_id': '$estilo', 
-              'nombre': {
-                '$addToSet': '$nombre'
-              }
-            }
-          }
-        ], 
-        'porEstudiosDeDirector': [
-          {
-            '$group': {
-              '_id': '$id_director.titulo', 
-              'nombre': {
-                '$addToSet': '$nombre'
-              }
-            }
-          }
-        ]
+      $match: {
+        'id_actor.pais': pais
+      }
+    }, {
+      $project: {
+        'nombre': 1
       }
     }
   ])
@@ -168,8 +150,42 @@ exports.moviesByActor = (req, res) => {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
-  Actor.aggregate([
-
+  const nombre = req.params.nombre;
+  Pelicula.aggregate([
+    { $limit: 20 },
+    {
+      $lookup: {
+        'from': 'actor', 
+        'localField': 'id_actor', 
+        'foreignField': '_id', 
+        'as': 'actores'
+      }
+    }, {
+      $unwind: {
+        'path': '$actores'
+      }
+    }, {
+      $match: {
+        'actores.nombre': nombre
+      }
+    }, {
+      $group: {
+        '_id': '$actores._id', 
+        'nombre': {
+          '$first': '$actores.nombre'
+        }, 
+        'peliculas': {
+          '$addToSet': '$nombre'
+        }, 
+        'pais': {
+          '$first': '$actores.pais'
+        }
+      }
+    }, {
+      $sort: {
+        'pais': 1
+      }
+    }
   ])
     .then(data => {
       res.send(data);
@@ -187,8 +203,82 @@ exports.location = (req, res) => {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
-  Actor.aggregate([
-
+  const longitud = parseInt(req.params.longitud);
+  const latitud = parseInt(req.params.latitud);
+  console.log(longitud, latitud)
+  Cine.aggregate([
+    {
+      '$geoNear': {
+        'near': {
+          'type': 'Point', 
+          'coordinates': [
+            longitud, latitud
+          ]
+        }, 
+        'distanceField': 'ubicacion.calculated', 
+        'query': {}
+      }
+    }, {
+      '$lookup': {
+        'from': 'sala', 
+        'localField': 'id_sala', 
+        'foreignField': '_id', 
+        'as': 'salas'
+      }
+    }, {
+      '$unwind': {
+        'path': '$salas'
+      }
+    }, {
+      '$lookup': {
+        'from': 'proyeccion', 
+        'localField': 'salas.id_proyeccion', 
+        'foreignField': '_id', 
+        'as': 'proyecciones'
+      }
+    }, {
+      '$unwind': {
+        'path': '$proyecciones'
+      }
+    }, {
+      '$unwind': {
+        'path': '$proyecciones.id_pelicula'
+      }
+    }, {
+      '$lookup': {
+        'from': 'pelicula', 
+        'localField': 'proyecciones.id_pelicula', 
+        'foreignField': '_id', 
+        'as': 'pelicula'
+      }
+    }, {
+      '$unwind': {
+        'path': '$pelicula'
+      }
+    }, {
+      '$project': {
+        '_id': 0, 
+        'cine': '$nombre', 
+        'horario': {
+          '$toDate': {
+            '$multiply': [
+              '$proyecciones.horario', 1000
+            ]
+          }
+        }, 
+        'numero sala': '$salas.numero', 
+        'numero de asientos': '$salas.asientos', 
+        'tipo de sala': '$salas.tipo', 
+        'precio': '$proyecciones.precio', 
+        'nombre': '$pelicula.nombre'
+      }
+    }, {
+      '$limit': 100
+    }, {
+      '$sort': {
+        'horario': 1
+      }
+    }
   ])
     .then(data => {
       res.send(data);

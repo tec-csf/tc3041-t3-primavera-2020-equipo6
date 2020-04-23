@@ -10,13 +10,13 @@ module.exports = app => {
   router.get("/facet", aggregates.facet);
 
   // Retrieve 
-  router.get("/nation", aggregates.nation);
+  router.get("/nation/:pais", aggregates.nation);
 
   // 
   router.get("/actor/:nombre", aggregates.moviesByActor);
 
   // Delete a Cine with id
-  router.get("/geo/:ubicacion", aggregates.location);
+  router.get("/geo/:longitud/:latitud", aggregates.location);
 
   app.use('/api/aggregates', router);
 };

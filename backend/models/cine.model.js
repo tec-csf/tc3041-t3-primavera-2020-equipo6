@@ -4,11 +4,12 @@ module.exports = mongoose => {
       _id: Number,
       nombre: String,
       ubicacion: {
-        type: String,
-        point: [Number],
+        type: { String },
+        coordinates: [Number]
       },
       id_sala: [Number],
     },
+    { typeKey: '$type' },
   );
 
   schema.method("toJSON", function () {
