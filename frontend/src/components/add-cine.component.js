@@ -6,7 +6,7 @@ export default class AddCine extends Component {
     super(props);
     this.onChangeId = this.onChangeId.bind(this);
     this.onChangeNombre = this.onChangeNombre.bind(this);
-    this.onChangeCoordenadas = this.onChangeCoordenadas.bind(this);
+    this.onChangePoint = this.onChangeCoordenadas.bind(this);
     this.onChangeIDsala = this.onChangeIDsala.bind(this);
     this.saveCine = this.saveCine.bind(this);
     this.newCine = this.newCine.bind(this);
@@ -16,7 +16,7 @@ export default class AddCine extends Component {
       nombre: "",
       ubicacion: {
           type: "point",
-          coordinates:[],
+          point:[],
       },
       id_sala:[],
 
@@ -36,14 +36,14 @@ export default class AddCine extends Component {
     });
   }
 
-  onChangeCoordenadas(e) {
-    var coordinates_str = e.target.value.split(",")
-    var coordinates_id = coordinates_str.map(function (x) {
+  onChangePoint(e) {
+    var point_str = e.target.value.split(",")
+    var point_id = point_str.map(function (x) {
       return parseInt(x, 10);
     })
     this.setState({
       //id_sala: e.target.value,
-      coordinates:coordinates_id,
+      point:point_id,
     });
   }
 
@@ -62,7 +62,7 @@ export default class AddCine extends Component {
     var data = {
       id: this.state.id,
       nombre: this.state.nombre,
-      coordinates: this.state.coordinates,
+      coordinates: this.state.point,
       id_sala: this.state.id_sala,
     };
 
@@ -71,7 +71,7 @@ export default class AddCine extends Component {
         this.setState({
           id: response.data.id,
           nombre: response.data.nombre,
-          coordinates: response.data.coordinates,
+          coordinates: response.data.point,
           id_sala: response.data.id_sala,
 
           submitted: true
@@ -89,7 +89,7 @@ export default class AddCine extends Component {
         nombre: "",
         ubicacion: {
             type: "point",
-            coordinates: [],
+            point: [],
         },
         id_sala:[],
   
@@ -137,15 +137,15 @@ export default class AddCine extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="coordinates">IDsala</label>
+              <label htmlFor="point">IDsala</label>
               <input
                 type="text"
                 className="form-control"
-                id="coordinates"
+                id="point"
                 required
-                value={this.state.coordinates}
-                onChange={this.onChangeCoordenadas}
-                name="coordinates"
+                value={this.state.point}
+                onChange={this.onChangePoint}
+                name="point"
               />
             </div>
             
