@@ -61,7 +61,8 @@ export default class AddSala extends Component {
       tipo: this.state.tipo,
       id_proyeccion: this.state.id_proyeccion,
     };
-
+    console.log(data)
+    
     SalaDataService.create(data)
       .then(response => {
         this.setState({
@@ -118,7 +119,7 @@ export default class AddSala extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="numero">Nombre</label>
+              <label htmlFor="numero">Numero</label>
               <input
                 type="number"
                 className="form-control"
@@ -131,7 +132,7 @@ export default class AddSala extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="asientos">Edad</label>
+              <label htmlFor="asientos">Asientos</label>
               <input
                 type="number"
                 className="form-control"
@@ -144,7 +145,7 @@ export default class AddSala extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="tipo">Pais</label>
+              <label htmlFor="tipo">Tipo</label>
               <input
                 type="text"
                 className="form-control"
@@ -157,7 +158,7 @@ export default class AddSala extends Component {
             </div>
             
             <div className="form-group">
-              <label htmlFor="id_proyeccion">Amigos</label>
+              <label htmlFor="id_proyeccion">Proyeccion</label>
               <input
                 type="number"
                 className="form-control"

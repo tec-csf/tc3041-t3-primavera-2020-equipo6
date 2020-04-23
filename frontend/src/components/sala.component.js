@@ -117,7 +117,7 @@ export default class Sala extends Component {
     SalaDataService.delete(this.state.currentSala.id)
       .then(response => {
         console.log(response.data);
-        this.props.history.push('/Salas')
+        this.props.history.push('/salas')
       })
       .catch(e => {
         console.log(e);

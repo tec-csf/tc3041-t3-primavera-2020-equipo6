@@ -54,6 +54,7 @@ export default class CinesList extends Component {
   }
 
   setActiveCine(cine, index) {
+    console.log(cine)
     this.setState({
       currentCine: cine,
       currentIndex: index
@@ -148,9 +149,9 @@ export default class CinesList extends Component {
               </div>
               <div>
                 <label>
-                  <strong>Point:</strong>
+                  <strong>Ubicacion:</strong>
                 </label>{" "}
-                {currentCine.coordinates.toString(currentCine.point)}
+                {currentCine.ubicacion.coordinates.toString(currentCine.ubicacion.coordinates)}
               </div>
               <div>
                 <label>

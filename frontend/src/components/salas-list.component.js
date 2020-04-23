@@ -13,7 +13,7 @@ export default class SalasList extends Component {
     this.searchNumero = this.searchNumero.bind(this);
 
     this.state = {
-      Salas: [],
+      salas: [],
       currentSala: null,
       currentIndex: -1,
       searchNumero: ""
@@ -33,10 +33,11 @@ export default class SalasList extends Component {
   }
 
   retrieveSalas() {
+    console.log("Holaaaaaaaaaaaaaaa")
     SalaDataService.getAll()
       .then(response => {
         this.setState({
-          Salas: response.data
+          salas: response.data
         });
         console.log(response.data);
       })
@@ -86,7 +87,7 @@ export default class SalasList extends Component {
   }
 
   render() {
-    const { searchNumero, Salas, currentSala, currentIndex } = this.state;
+    const { searchNumero, salas, currentSala, currentIndex } = this.state;
 
     return (
       <div className="list row">
@@ -114,17 +115,17 @@ export default class SalasList extends Component {
           <h4>Salas List</h4>
 
           <ul className="list-group">
-            {Salas &&
-              Salas.map((Sala, index) => (
+            {salas &&
+              salas.map((sala, index) => (
                 <li
                   className={
                     "list-group-item " +
                     (index === currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveSala(Sala, index)}
+                  onClick={() => this.setActiveSala(sala, index)}
                   key={index}
                 >
-                  {Sala.Numero}
+                  {sala.numero}
                 </li>
               ))}
           </ul>

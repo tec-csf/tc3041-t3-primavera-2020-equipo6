@@ -6,7 +6,7 @@ export default class AddCine extends Component {
     super(props);
     this.onChangeId = this.onChangeId.bind(this);
     this.onChangeNombre = this.onChangeNombre.bind(this);
-    this.onChangePoint = this.onChangeCoordenadas.bind(this);
+    this.onChangeUbicacion = this.onChangeUbicacion.bind(this);
     this.onChangeIDsala = this.onChangeIDsala.bind(this);
     this.saveCine = this.saveCine.bind(this);
     this.newCine = this.newCine.bind(this);
@@ -36,14 +36,16 @@ export default class AddCine extends Component {
     });
   }
 
-  onChangePoint(e) {
-    var point_str = e.target.value.split(",")
-    var point_id = point_str.map(function (x) {
-      return parseInt(x, 10);
+  onChangeUbicacion(e) {
+    var coordinates_str = e.target.value.split(",")
+    var coordinates_id = coordinates_str.map(function (x) {
+      return parseFloat(x, 10);
     })
-    this.setState({
-      //id_sala: e.target.value,
-      point:point_id,
+    this.setState( {
+      ubicacion: {
+        type: "Point",
+        coordinates:coordinates_id
+      }
     });
   }
 
@@ -62,16 +64,16 @@ export default class AddCine extends Component {
     var data = {
       id: this.state.id,
       nombre: this.state.nombre,
-      coordinates: this.state.point,
+      ubicacion: this.state.ubicacion,
       id_sala: this.state.id_sala,
     };
-
+    console.log(data)
     CineDataService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
           nombre: response.data.nombre,
-          coordinates: response.data.point,
+          ubicacion: response.data.ubicacion,
           id_sala: response.data.id_sala,
 
           submitted: true
@@ -88,7 +90,7 @@ export default class AddCine extends Component {
         id: null,
         nombre: "",
         ubicacion: {
-            type: "point",
+            type: "Point",
             point: [],
         },
         id_sala:[],
@@ -137,14 +139,14 @@ export default class AddCine extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="point">IDsala</label>
+              <label htmlFor="point">Coordenadas</label>
               <input
                 type="text"
                 className="form-control"
                 id="point"
                 required
-                value={this.state.point}
-                onChange={this.onChangePoint}
+                value={this.state.ubicacion.coordinates}
+                onChange={this.onChangeUbicacion}
                 name="point"
               />
             </div>

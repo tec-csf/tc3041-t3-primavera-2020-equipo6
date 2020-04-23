@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import CineDataService from "../services/actor.service";
+import CineDataService from "../services/cine.service";
 
 export default class Cine extends Component {
   constructor(props) {
     super(props);
     this.onChangeNombre = this.onChangeNombre.bind(this);
-    this.onChangePais = this.onChangePoint.bind(this);
+    this.onChangeUbicacion = this.onChangeUbicacion.bind(this);
     this.onChangeIDsala = this.onChangeIDsala.bind(this);
     this.onChangeId = this.onChangeId.bind(this);
     this.getCine = this.getCine.bind(this);
@@ -18,7 +18,7 @@ export default class Cine extends Component {
         nombre: "",
         ubicacion: {
           type: "point",
-          point: []
+          coordinates: [] 
         },
         id_sala:[],
       },
@@ -54,20 +54,25 @@ export default class Cine extends Component {
     });
   }
 
-
-  onChangePoint(e) {
-    var point_str = e.target.value.split(",");
-    var point_id = point_str.map(function (x) { 
-        return parseInt(x, 10); 
-      });
-
-    this.setState(prevState => ({
-      currentCine: {
-        ...prevState.currentCine,
-        point: point_id,
-      }
-    }));
+  onChangeUbicacion(e) {
+    var coordinates_str = e.target.value.split(",")
+    var coordinates_id = coordinates_str.map(function (x) {
+      return parseFloat(x, 10);
+    })
+    this.setState( function (prevState){
+      return {
+        currentCine: {
+          ...prevState.currentCine,
+          ubicacion: {
+            type: "Point",
+            coordinates:coordinates_id
+          }
+          
+        }
+      };
+    });
   }
+
 
   onChangeIDsala(e) {
     const id_sala = e.target.value;
@@ -85,8 +90,10 @@ export default class Cine extends Component {
   }
 
   getCine(id) {
+    console.log(id)
     CineDataService.get(id)
       .then(response => {
+        console.log(response)
         this.setState({
           currentCine: response.data
         });
@@ -98,6 +105,7 @@ export default class Cine extends Component {
   }
 
   updateCine() {
+    console.log(this.state.currentCine)
     CineDataService.update(
       this.state.currentCine.id,
       this.state.currentCine
@@ -143,18 +151,19 @@ export default class Cine extends Component {
                   onChange={this.onChangeNombre}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="point">Edad</label>
+              <div className="form-group"> 
+                <label htmlFor="id_sala">Ubicacion</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="point"
-                  value={currentCine.point}
-                  onChange={this.onChangePoint}
+                  id="id_sala"
+                  value={currentCine.ubicacion.coordinates}
+                  onChange={this.onChangeUbicacion}
                 />
               </div>
+              
               <div className="form-group">
-                <label htmlFor="id_sala">IDsala</label>
+                <label htmlFor="id_sala">ID Sala</label>
                 <input
                   type="text"
                   className="form-control"
