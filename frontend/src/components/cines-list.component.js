@@ -150,7 +150,7 @@ export default class CinesList extends Component {
                 <label>
                   <strong>Coordinates:</strong>
                 </label>{" "}
-                {currentCine.coordinates.toString(currentCine.coordenadas)}
+                {currentCine.coordinates.toString(currentCine.coordinates)}
               </div>
               <div>
                 <label>
