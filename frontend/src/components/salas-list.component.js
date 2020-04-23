@@ -144,25 +144,25 @@ export default class SalasList extends Component {
                 <label>
                   <strong>Numero:</strong>
                 </label>{" "}
-                {currentSala.Numero}
+                {currentSala.numero}
               </div>
               <div>
                 <label>
                   <strong>Asientos:</strong>
                 </label>{" "}
-                {currentSala.Asientos}
+                {currentSala.asientos}
               </div>
               <div>
                 <label>
                   <strong>Tipo:</strong>
                 </label>{" "}
-                {currentSala.Tipo}
+                {currentSala.tipo}
               </div>
               <div>
                 <label>
                   <strong>Id_proyeccion:</strong>
                 </label>{" "}
-                {currentSala.Id_proyeccion}
+                {currentSala.id_proyeccion}
               </div>
               <div>
                 <label>
