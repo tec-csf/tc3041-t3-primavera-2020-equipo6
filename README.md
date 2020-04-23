@@ -84,3 +84,13 @@ Cada documento consiste de un schema, el cual contiene un tipo, variables requer
 ## 3. Referencias
 
 *[Incluya aquí las referencias a sitios de interés, datasets y cualquier otra información que haya utilizado para realizar la tarea y que le puedan ser de utilidad a otras personas que quieran usarlo como referencia]*
+
+https://medium.com/@nishankjaintdk/setting-up-a-node-js-app-on-a-linux-ami-on-an-aws-ec2-instance-with-nginx-59cbc1bcc68c
+
+https://bezkoder.com/react-node-express-mongodb-mern-stack/
+
+https://bezkoder.com/node-express-mongodb-crud-rest-api/
+
+https://bezkoder.com/node-express-mongodb-crud-rest-api/
+
+http://ec2-3-22-119-16.us-east-2.compute.amazonaws.com:8081
