@@ -18,8 +18,8 @@ export default class AddPelicula extends Component {
         nombre: "",
         ano: null,
         estilo:"",
-        director:null,
-        actor:[],
+        id_director:null,
+        id_actor:[],
 
       submitted: false
     };
@@ -51,7 +51,7 @@ export default class AddPelicula extends Component {
 
   onChangeDirector(e) {
     this.setState({
-      director: e.target.value
+      id_director: e.target.value
     });
   }
 
@@ -61,7 +61,7 @@ export default class AddPelicula extends Component {
       return parseInt(x, 10);
     })
     this.setState({
-      actor:actor_id,
+      id_actor:actor_id,
     });
   }
 
@@ -71,8 +71,8 @@ export default class AddPelicula extends Component {
       nombre: this.state.nombre,
       ano: this.state.ano,
       estilo: this.state.estilo,
-      director: this.state.director,
-      actor: this.state.actor,
+      id_director: this.state.id_director,
+      id_actor: this.state.id_actor,
     };
 
     PeliculaDataService.create(data)
@@ -82,8 +82,8 @@ export default class AddPelicula extends Component {
           nombre: response.data.nombre,
           ano: response.data.ano,
           estilo: response.data.estilo,
-          director: response.data.director,
-          actor: response.data.actor,
+          id_director: response.data.id_director,
+          id_actor: response.data.id_actor,
 
           submitted: true
         });
@@ -100,8 +100,8 @@ export default class AddPelicula extends Component {
       nombre: "",
       ano: null,
       estilo: "",
-      director: null,
-      actor: [],
+      id_director: null,
+      id_actor: [],
 
       submitted: false
     });
@@ -172,28 +172,28 @@ export default class AddPelicula extends Component {
             </div>
             
             <div className="form-group">
-              <label htmlFor="director">Director</label>
+              <label htmlFor="id_director">Director</label>
               <input
                 type="number"
                 className="form-control"
-                id="director"
+                id="id_director"
                 required
-                value={this.state.director}
+                value={this.state.id_director}
                 onChange={this.onChangeDirector}
-                name="director"
+                name="id_director"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="actores">Actores</label>
+              <label htmlFor="id_actor">Actores</label>
               <input
                 type="text"
                 className="form-control"
-                id="actores"
+                id="id_actor"
                 required
-                value={this.state.actor}
+                value={this.state.id_actor}
                 onChange={this.onChangeActor}
-                name="actores"
+                name="id_actor"
               />
             </div>
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProyeccionDataService from "../services/actor.service";
+import ProyeccionDataService from "../services/proyeccion.service";
 
 export default class Proyeccion extends Component {
   constructor(props) {

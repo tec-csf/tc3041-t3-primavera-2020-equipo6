@@ -16,7 +16,7 @@ export default class AddCine extends Component {
       nombre: "",
       ubicacion: {
           type: "point",
-          coordenadas[],
+          coordinates:[],
       },
       id_sala:[],
 
@@ -89,7 +89,7 @@ export default class AddCine extends Component {
         nombre: "",
         ubicacion: {
             type: "point",
-            coordenadas[],
+            coordinates: [],
         },
         id_sala:[],
   

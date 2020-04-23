@@ -22,6 +22,7 @@ require("./routes/director.routes.js")(app);
 require("./routes/pelicula.routes.js")(app);
 require("./routes/proyeccion.routes.js")(app);
 require("./routes/sala.routes.js")(app);
+require("./routes/aggregate.routes.js")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

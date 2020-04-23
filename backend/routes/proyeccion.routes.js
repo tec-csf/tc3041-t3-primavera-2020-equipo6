@@ -10,7 +10,7 @@ module.exports = app => {
   router.get("/", proyeccions.findAll);
 
   // Retrieve a single Proyeccion with id
-  router.get("/:id", proyeccions.findOne);
+  router.get("/:precio", proyeccions.findOne);
 
   // Update a Proyeccion with id
   router.put("/:id", proyeccions.update);

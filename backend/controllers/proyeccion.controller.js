@@ -33,8 +33,8 @@ exports.create = (req, res) => {
 
 // Retrieve all proyeccions from the database.
 exports.findAll = (req, res) => {
-  const nombre = req.query.nombre;
-  var condition = nombre ? { nombre: { $regex: new RegExp(nombre), $options: "i" } } : {};
+  const precio = req.query.precio;
+  var condition = precio ? { precio: precio } : {};
 
   Proyeccion.find(condition).limit(20)
     .then(data => {

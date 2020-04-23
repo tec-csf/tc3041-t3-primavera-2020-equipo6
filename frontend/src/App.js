@@ -24,6 +24,8 @@ import PeliculasList from "./components/peliculas-list.component";
 import ProyeccionsList from "./components/proyeccions-list.component";
 import SalasList from "./components/salas-list.component";
 
+import Aggregate from "./components/aggregate.component";
+
 class App extends Component {
   render() {
     return (
@@ -62,6 +64,11 @@ class App extends Component {
               <li className="nav-item">
                 <Link to={"/cines"} className="nav-link">
                   Cine
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/aggregates"} className="nav-link">
+                  Aggregate
                 </Link>
               </li>
             </div>

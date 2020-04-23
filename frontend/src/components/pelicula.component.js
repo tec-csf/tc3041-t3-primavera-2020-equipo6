@@ -20,8 +20,8 @@ export default class Pelicula extends Component {
         nombre: "",
         ano: null,
         estilo:"",
-        director:null,
-        actor:[],
+        id_director:null,
+        id_actor:[],
       },
       message: ""
     };
@@ -83,7 +83,7 @@ export default class Pelicula extends Component {
     this.setState(prevState => ({
       currentPelicula: {
         ...prevState.currentPelicula,
-        director: director
+        id_director: director
       }
     }));
   }
@@ -99,7 +99,7 @@ export default class Pelicula extends Component {
     this.setState(prevState => ({
       currentPelicula: {
         ...prevState.currentPelicula,
-        actor: actor_id,
+        id_actor: actor_id,
       }
     }));
   }
@@ -184,21 +184,21 @@ export default class Pelicula extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="director">Director</label>
+                <label htmlFor="id_director">Director</label>
                 <input
                   type="number"
                   className="form-control"
-                  id="director"
+                  id="id_director"
                   value={currentPelicula.id_director}
                   onChange={this.onChangeDirector}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="actores">Actores</label>
+                <label htmlFor="id_actor">Actores</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="actores"
+                  id="id_actor"
                   value={currentPelicula.id_actor}
                   onChange={this.onChangeActor}
                 />

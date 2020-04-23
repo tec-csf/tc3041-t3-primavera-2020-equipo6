@@ -56,9 +56,8 @@ export default class Cine extends Component {
 
 
   onChangeCoordenadas(e) {
-    const coordenadas = e.target.value;
-    var coordenadas = coordenadas.split(",");
-    var coordenadas = coordenadas.map(function (x) { 
+    var coordenadasStr = e.target.value.split(",");
+    var coordenadas = coordenadasStr.map(function (x) { 
         return parseInt(x, 10); 
       });
 
