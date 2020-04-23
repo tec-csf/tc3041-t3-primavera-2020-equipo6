@@ -25,8 +25,8 @@ class SalaDataService {
     return http.delete(`/salas`);
   }
 
-  findByNombre(title) {
-    return http.get(`/salas?nombre=${title}`);
+  findByNumero(title) {
+    return http.get(`/salas?numero=${title}`);
   }
 }
 
