@@ -18,7 +18,7 @@ export default class Cine extends Component {
         nombre: "",
         coordenadas: {
           type: "point",
-          coordenadas: []
+          coordinates: []
         },
         id_sala:[],
       },
@@ -56,15 +56,15 @@ export default class Cine extends Component {
 
 
   onChangeCoordenadas(e) {
-    var coordenadasStr = e.target.value.split(",");
-    var coordenadas = coordenadasStr.map(function (x) { 
+    var coordinatesStr = e.target.value.split(",");
+    var coordinates = coordinatesStr.map(function (x) { 
         return parseInt(x, 10); 
       });
 
     this.setState(prevState => ({
       currentCine: {
         ...prevState.currentCine,
-        coordenadas: coordenadas,
+        coordinates: coordinates,
       }
     }));
   }
@@ -144,12 +144,12 @@ export default class Cine extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="coordenadas">Edad</label>
+                <label htmlFor="coordinates">Edad</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="coordenadas"
-                  value={currentCine.coordenadas}
+                  id="coordinates"
+                  value={currentCine.coordinates}
                   onChange={this.onChangeCoordenadas}
                 />
               </div>
