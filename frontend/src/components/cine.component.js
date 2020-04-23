@@ -5,7 +5,7 @@ export default class Cine extends Component {
   constructor(props) {
     super(props);
     this.onChangeNombre = this.onChangeNombre.bind(this);
-    this.onChangePais = this.onChangeCoordenadas.bind(this);
+    this.onChangePais = this.onChangePoint.bind(this);
     this.onChangeIDsala = this.onChangeIDsala.bind(this);
     this.onChangeId = this.onChangeId.bind(this);
     this.getCine = this.getCine.bind(this);
@@ -16,9 +16,9 @@ export default class Cine extends Component {
       currentCine: {
         id: null,
         nombre: "",
-        coordenadas: {
+        ubicacion: {
           type: "point",
-          coordinates: []
+          point: []
         },
         id_sala:[],
       },
@@ -55,16 +55,16 @@ export default class Cine extends Component {
   }
 
 
-  onChangeCoordenadas(e) {
-    var coordinatesStr = e.target.value.split(",");
-    var coordinates = coordinatesStr.map(function (x) { 
+  onChangePoint(e) {
+    var point_str = e.target.value.split(",");
+    var point_id = point_str.map(function (x) { 
         return parseInt(x, 10); 
       });
 
     this.setState(prevState => ({
       currentCine: {
         ...prevState.currentCine,
-        coordinates: coordinates,
+        point: point_id,
       }
     }));
   }
@@ -144,13 +144,13 @@ export default class Cine extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="coordinates">Edad</label>
+                <label htmlFor="point">Edad</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="coordinates"
-                  value={currentCine.coordinates}
-                  onChange={this.onChangeCoordenadas}
+                  id="point"
+                  value={currentCine.point}
+                  onChange={this.onChangePoint}
                 />
               </div>
               <div className="form-group">
