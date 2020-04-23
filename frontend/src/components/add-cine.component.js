@@ -37,13 +37,13 @@ export default class AddCine extends Component {
   }
 
   onChangeCoordenadas(e) {
-    var coordenadas_str = e.target.value.split(",")
-    var coordenadas_id = coordenadas_str.map(function (x) {
+    var coordinates_str = e.target.value.split(",")
+    var coordinates_id = coordinates_str.map(function (x) {
       return parseInt(x, 10);
     })
     this.setState({
       //id_sala: e.target.value,
-      coordenadas:coordenadas_id,
+      coordinates:coordinates_id,
     });
   }
 
@@ -62,7 +62,7 @@ export default class AddCine extends Component {
     var data = {
       id: this.state.id,
       nombre: this.state.nombre,
-      coordenadas: this.state.coordenadas,
+      coordinates: this.state.coordinates,
       id_sala: this.state.id_sala,
     };
 
@@ -71,7 +71,7 @@ export default class AddCine extends Component {
         this.setState({
           id: response.data.id,
           nombre: response.data.nombre,
-          coordenadas: response.data.coordenadas,
+          coordinates: response.data.coordinates,
           id_sala: response.data.id_sala,
 
           submitted: true
@@ -137,15 +137,15 @@ export default class AddCine extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="coordenadas">IDsala</label>
+              <label htmlFor="coordinates">IDsala</label>
               <input
                 type="text"
                 className="form-control"
-                id="coordenadas"
+                id="coordinates"
                 required
-                value={this.state.coordenadas}
+                value={this.state.coordinates}
                 onChange={this.onChangeCoordenadas}
-                name="coordenadas"
+                name="coordinates"
               />
             </div>
             
