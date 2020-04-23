@@ -14,7 +14,7 @@ export default class ProyeccionsList extends Component {
 
     this.state = {
       proyeccions: [],
-      currentActor: null,
+      currentProyeccion: null,
       currentIndex: -1,
       searchNombre: ""
     };

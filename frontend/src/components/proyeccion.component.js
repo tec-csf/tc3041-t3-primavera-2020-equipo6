@@ -13,7 +13,7 @@ export default class Proyeccion extends Component {
     this.deleteProyeccion = this.deleteProyeccion.bind(this);
 
     this.state = {
-      currentActor: {
+      currentProyeccion: {
         id: null,
         horario: null,
         precio: null,
@@ -31,8 +31,8 @@ export default class Proyeccion extends Component {
     const id = e.target.value;
 
     this.setState(prevState => ({
-      currentActor: {
-        ...prevState.currentActor,
+      currentProyeccion: {
+        ...prevState.currentProyeccion,
         id: id
       }
     }));
