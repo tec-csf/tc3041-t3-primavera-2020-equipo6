@@ -148,9 +148,9 @@ export default class CinesList extends Component {
               </div>
               <div>
                 <label>
-                  <strong>Coordenadas:</strong>
+                  <strong>Coordinates:</strong>
                 </label>{" "}
-                {currentCine.coordenadas.toString(currentCine.coordenadas)}
+                {currentCine.coordinates.toString(currentCine.coordenadas)}
               </div>
               <div>
                 <label>
