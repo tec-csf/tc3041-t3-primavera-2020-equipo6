@@ -79,7 +79,12 @@ Cada documento consiste de un schema, el cual contiene un tipo, variables requer
 
 ## 2.5 Pasos a seguir para utilizar la aplicación
 
-*[Incluya aquí una guía paso a paso para poder utilizar la aplicación, desde la clonación del repositorio hasta el despliegue de la solución en una plataforma en la nube.]*
+#### 1. Clonar el repositorio utilizando github, seleccionando la carpeta deseada en donde clonar el repositorio y correr el comando: [$git clone https://github.com/tec-csf/tc3041-t3-primavera-2020-equipo6.git]
+#### 2. Entrar al repositorio clonado, donde se pueden ver todas las carpetas y archivos del proyecto.
+#### 3. Entrar a la carpeta *frontend*, abrir una terminal CMD y correr el comando: *npm install*. Despues de unos cuantos segundos las librerias necesarias seran descargadas en tu ordenador.
+#### 4. Nos volvemos a la carpeta principal, y repetimos el paso *3* en la carpeta *backend*.
+#### 5. Una vez instaladas las dependencias, utilizamos el comando *node server.js* dentro de la carpeta *backend* para iniciar el servidor en el puerto 8080 y conectarnos a la base de datos.
+#### 6. Nos regresamos a la carpeta de *frontend* y volvemos a abrir la terminal, donde corremos el comando *npm start* para iniciar el frontend de la web application. En unos segundos se nos abrirá una nueva pestaña en nuestro navegador de preferencia con la web page.
 
 ## 3. Referencias
 
