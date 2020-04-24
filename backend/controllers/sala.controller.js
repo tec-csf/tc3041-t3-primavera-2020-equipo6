@@ -32,8 +32,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Salas from the database.
 exports.findAll = (req, res) => {
-  const nombre = req.query.nombre;
-  var condition = nombre ? { nombre: { $regex: new RegExp(nombre), $options: "i" } } : {};
+  const numero = req.query.numero;
+  var condition = numero ? { numero: numero } : {};
 
   Sala.find(condition).limit(20)
     .then(data => {
