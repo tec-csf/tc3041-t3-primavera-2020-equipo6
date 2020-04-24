@@ -85,6 +85,14 @@ Cada documento consiste de un schema, el cual contiene un tipo, variables requer
 #### 4. Nos volvemos a la carpeta principal, y repetimos el paso *3* en la carpeta *backend*.
 #### 5. Una vez instaladas las dependencias, utilizamos el comando *node server.js* dentro de la carpeta *backend* para iniciar el servidor en el puerto 8080 y conectarnos a la base de datos.
 #### 6. Nos regresamos a la carpeta de *frontend* y volvemos a abrir la terminal, donde corremos el comando *npm start* para iniciar el frontend de la web application. En unos segundos se nos abrirá una nueva pestaña en nuestro navegador de preferencia con la web page.
+#### 7. La web page nos recibe en la seccion de *Directores*, donde podemos ver varios botones y funcionalidades *CRUD*, en la barra superior se encuentran los registros de "Director, Actor, Pelicula, Proyeccion, Sala y Cine".
+![](database/page1.png)
+#### 8. En la barra de *Search*, podemos buscar por nombre a los Directores, Actores, Peliculas y Cines. En el caso de Proyeccion es por precio y Sala es por numero.
+![](database/pagesearch.png)
+#### 9. Si seleccionamos un nombre, nos da el resto de la información sobre el/ella y la opción de editarlo.
+![](database/pageselect.png)
+#### 10. Dentro del editor, se pueden modificar todas las propiedades del objeto (incluido el ID, pero si llegara a coincidir con otro, la edicion sera rechazada). Tambien, se puede eliminar el objeto con el boton rojo de *Delete*.
+![](database/pageedit.png)
 
 ## 3. Referencias
 
