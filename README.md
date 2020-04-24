@@ -64,19 +64,27 @@ Cada documento consiste de un schema, el cual contiene un tipo, variables requer
 
 ### 2.3 Frontend
 
-*[Incluya aquí una explicación de la solución utilizada para el frontend de la tarea. No olvide incluir las ligas o referencias donde se puede encontrar información de los lenguajes de programación, frameworks y librerías utilizadas.]*
+Para el frontend, utilizamos React Native para la creacion y maniuplacion de la Web Page. Intsalamos las librerias/dependencias con yarn/npm (react). Para la base y diseño de la página, se utilizo HTML y estilos CSS en la aplicación. En la carpeta de *src/components*, se encuentran los archivos de cada componente de la Web Page (incluido los aggregate).
+
+*(https://github.com/facebook/create-react-app).*
 
 #### 2.3.1 Lenguaje de programación
+Javascript, HTML, CSS
 #### 2.3.2 Framework
+React
 #### 2.3.3 Librerías de funciones o dependencias
+Node, Bootstrap, Axios, Yarn/NPM
 
 ### 2.4 Backend
 
-*[Incluya aquí una explicación de la solución utilizada para el backend de la tarea. No olvide incluir las ligas o referencias donde se puede encontrar información de los lenguajes de programación, frameworks y librerías utilizadas.]*
+Para el *backend*, tenemos nuestra base de datos en *MongoAtlas*; para probar los queries y agregaciones utilizamos *MongoDBCompass*; Para probar los POST y GET de los queries y agregaciones utilizamos *Postman*. En la carpeta de *models* tenemos el *schema* de cada uno de los documentos, y en la carpeta de *controllers* tenemos cada controlador de cada documento, donde agarra su *schema* de *models* yse hacen los POST.
 
 #### 2.4.1 Lenguaje de programación
+Javascript, JSON.
 #### 2.4.2 Framework
+Mongoose
 #### 2.4.3 Librerías de funciones o dependencias
+Express, Node, Mongoose
 
 ## 2.5 Pasos a seguir para utilizar la aplicación
 
@@ -96,8 +104,6 @@ Cada documento consiste de un schema, el cual contiene un tipo, variables requer
 ![](database/pageedit.png)
 
 ## 3. Referencias
-
-*[Incluya aquí las referencias a sitios de interés, datasets y cualquier otra información que haya utilizado para realizar la tarea y que le puedan ser de utilidad a otras personas que quieran usarlo como referencia]*
 
 https://medium.com/@nishankjaintdk/setting-up-a-node-js-app-on-a-linux-ami-on-an-aws-ec2-instance-with-nginx-59cbc1bcc68c
 
