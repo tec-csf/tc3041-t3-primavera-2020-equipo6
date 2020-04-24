@@ -33,7 +33,6 @@ export default class SalasList extends Component {
   }
 
   retrieveSalas() {
-    console.log("Holaaaaaaaaaaaaaaa")
     SalaDataService.getAll()
       .then(response => {
         this.setState({
@@ -77,7 +76,7 @@ export default class SalasList extends Component {
     SalaDataService.findByNumero(this.state.searchNumero)
       .then(response => {
         this.setState({
-          Salas: response.data
+          salas: response.data
         });
         console.log(response.data);
       })
