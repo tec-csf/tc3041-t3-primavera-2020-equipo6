@@ -5,7 +5,7 @@
 ##### Integrantes:
 1. *Salomon Levy Becherano* - *A01023530* - *TEC SF*
 2. *Sebastian Gonzalo Vives Faus* - *A01025211* - *TEC SF*
-3. *Luis Armando Ortiz Revilla* - *A01022320* - *TEC SF*
+3. *[Poner aquí Nombre y Apellidos del integrante 3]* - *[Poner aquí su Matrícula]* - *[Poner aquí su campus]*
 4. *[Poner aquí Nombre y Apellidos del integrante 4]* - *[Poner aquí su Matrícula]* - *[Poner aquí su campus]*
 
 ---
@@ -102,6 +102,12 @@ Express, Node, Mongoose
 ![](database/pageselect.png)
 #### 10. Dentro del editor, se pueden modificar todas las propiedades del objeto (incluido el ID, pero si llegara a coincidir con otro, la edicion sera rechazada). Tambien, se puede eliminar el objeto con el boton rojo de *Delete*.
 ![](database/pageedit.png)
+#### 11. En la sección de *Agregaciones*, el usuario puede hacer 5 consultas diferentes utilizanod varias etapas de agregación:
+1. Social Network te muestra una lista de actores, seleccionando a uno nos muestra su nombre y su red social, la cual es toda su lista de amigos.
+2. Facet devuelve las peliculas por diferentes categorias, por genero de cine y por carrera de director.
+3. El boton 3 te deja insertar un país y te muestra las peliculas actuadas por actores/actrices con respectivo país de origen.
+4. Busca un actor y te muestra todas las peliculas que ha actuado ese actor.
+5. Finalmente, al insertar tus coordenadas (actualmente solo funciona en EU) te muestra todos los cines cercanos a ti, incluyendo sus peliculas que estan proyectando ahorita.
 
 ## 3. Referencias
 
