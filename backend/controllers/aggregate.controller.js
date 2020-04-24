@@ -53,7 +53,6 @@ exports.facet = (req, res) => {
   }
   Pelicula.aggregate([
     // Groups movies by director's education and by genre
-    { $limit: 20 },
     {
       $sort: {
         'ano': -1
@@ -92,7 +91,8 @@ exports.facet = (req, res) => {
           }
         ]
       }
-    }
+    },
+    { $limit: 20 },
   ])
     .then(data => {
       res.send(data);
@@ -112,7 +112,6 @@ exports.nation = (req, res) => {
   }
   const pais = req.params.pais;
   Pelicula.aggregate([
-    { $limit: 20 },
     {
       $lookup: {
         'from': 'actor', 
@@ -132,7 +131,8 @@ exports.nation = (req, res) => {
       $project: {
         'nombre': 1
       }
-    }
+    },
+    { $limit: 20 },
   ])
     .then(data => {
       res.send(data);
