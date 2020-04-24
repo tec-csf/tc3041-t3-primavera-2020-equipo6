@@ -31,7 +31,7 @@ exports.socialNetwork = (req, res) => {
       $project: {
         'nombre': 1,
         'amigos': '$amigos.nombre',
-        'Red Social': '$Red Social.nombre'
+        'red': '$Red Social.nombre'
       }
     }
   ])

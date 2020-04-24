@@ -23,7 +23,6 @@ import DirectorsList from "./components/directors-list.component";
 import PeliculasList from "./components/peliculas-list.component";
 import ProyeccionsList from "./components/proyeccions-list.component";
 import SalasList from "./components/salas-list.component";
-
 import Aggregate from "./components/aggregate.component";
 
 class App extends Component {
@@ -81,6 +80,7 @@ class App extends Component {
               <Route exact path="/proyeccions" component={ProyeccionsList} />
               <Route exact path="/salas" component={SalasList} />
               <Route exact path="/cines" component={CinesList} />
+              <Route exact path="/aggregates" component={Aggregate} />
               
               <Route exact path="/addDirector" component={AddDirector} />
               <Route exact path="/addActor" component={AddActor} />

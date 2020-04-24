@@ -9,16 +9,16 @@ class AggregateDataService {
     return http.get(`/aggregates/facet`);
   }
 
-  nation() {
-    return http.get("/aggregates/nation");
+  nation(pais) {
+    return http.get(`/aggregates/nation/${pais}`);
   }
 
   moviesByActor(nombre) {
     return http.get(`/aggregates/actor/${nombre}`);
   }
 
-  location(ubicacion) {
-    return http.get(`/aggregates/geo/${ubicacion}`);
+  location(longitud, latitud) {
+    return http.get(`/aggregates/geo/${longitud}/${latitud}`);
   }
 }
 
