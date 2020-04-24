@@ -53,6 +53,7 @@ exports.facet = (req, res) => {
   }
   Pelicula.aggregate([
     // Groups movies by director's education and by genre
+    { $limit: 1000 },
     {
       $sort: {
         'ano': -1
