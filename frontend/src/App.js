@@ -72,7 +72,7 @@ class App extends Component {
               </li>
             </div>
           </nav>
-          <div className="container mt-3">
+          <div className="container-fluid mt-3">
             <Switch>
               <Route exact path={["/", "/directors"]} component={DirectorsList} />
               <Route exact path="/actors" component={ActorsList} />

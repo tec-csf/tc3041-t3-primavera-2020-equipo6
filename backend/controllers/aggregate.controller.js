@@ -152,7 +152,7 @@ exports.moviesByActor = (req, res) => {
   }
   const nombre = req.params.nombre;
   Pelicula.aggregate([
-    { $limit: 20 },
+    { $limit: 10000 },
     {
       $lookup: {
         'from': 'actor', 
@@ -266,9 +266,9 @@ exports.location = (req, res) => {
             ]
           }
         }, 
-        'numero sala': '$salas.numero', 
-        'numero de asientos': '$salas.asientos', 
-        'tipo de sala': '$salas.tipo', 
+        'sala': '$salas.numero', 
+        'asientos': '$salas.asientos', 
+        'tipo': '$salas.tipo', 
         'precio': '$proyecciones.precio', 
         'nombre': '$pelicula.nombre'
       }

@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://ec2-3-22-119-16.us-east-2.compute.amazonaws.com:8081"
 };
 
 app.use(cors(corsOptions));

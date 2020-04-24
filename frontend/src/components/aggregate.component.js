@@ -16,7 +16,6 @@ export default class ActorsList extends Component {
     this.onChangeSearchNombre = this.onChangeSearchNombre.bind(this);
     this.onChangeSearchLongitud = this.onChangeSearchLongitud.bind(this);
     this.onChangeSearchLatitud = this.onChangeSearchLatitud.bind(this);
-
     this.state = {
       results: [],
       currentResult: null,
@@ -25,7 +24,7 @@ export default class ActorsList extends Component {
       searchPais: "",
       searchNombre: "",
       searchLongitud: null,
-      searchLatitud: null,
+      searchLatitud: null
     };
   }
 
@@ -50,18 +49,18 @@ export default class ActorsList extends Component {
   }
 
   onChangeSearchLongitud(e) {
-    const searchLongitud = e.target.value;
+    var longitud = e.target.value
 
     this.setState({
-      searchLongitud: searchLongitud
+      searchLongitud: longitud
     });
   }
 
   onChangeSearchLatitud(e) {
-    const searchLatitud = e.target.value;
+    var latitud = e.target.value
 
     this.setState({
-      searchLatitud: searchLatitud
+      searchLatitud: latitud
     });
   }
 
@@ -93,7 +92,7 @@ export default class ActorsList extends Component {
   }
 
   getNation() {
-    AggregateDataService.nation()
+    AggregateDataService.nation(this.state.searchPais)
       .then(response => {
         this.setState({
           results: response.data,
@@ -106,8 +105,9 @@ export default class ActorsList extends Component {
   }
 
   getMoviesByActor() {
-    AggregateDataService.moviesByActor()
+    AggregateDataService.moviesByActor(this.state.searchNombre)
       .then(response => {
+        console.log(response)
         this.setState({
           results: response.data,
           currentAggregation: 3,
@@ -119,7 +119,7 @@ export default class ActorsList extends Component {
   }
 
   getLocation() {
-    AggregateDataService.location()
+    AggregateDataService.location(this.state.searchLongitud, this.state.searchLatitud)
       .then(response => {
         this.setState({
           results: response.data,
@@ -155,11 +155,11 @@ export default class ActorsList extends Component {
       searchPais,
       searchNombre,
       searchLongitud,
-      searchLatitud,
+      searchLatitud
     } = this.state;
 
     return (
-      <div className="list row">
+      <div className="row">
         <div className="col-md-3">
           <div className="list row">
             <div className="input-group mb-3">
@@ -195,16 +195,65 @@ export default class ActorsList extends Component {
                 type="text"
                 className="form-control"
                 placeholder="Search by pais"
-                value={searchNombre}
+                value={searchPais}
                 onChange={this.onChangeSearchPais}
               />
               <div className="input-group-append">
                 <button
                   className="btn btn-outline-secondary"
                   type="button"
-                  onClick={this.searchPais}
+                  onClick={this.getNation}
                 >
                   Search Pais
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="list row">
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search by actor"
+                value={searchNombre}
+                onChange={this.onChangeSearchNombre}
+              />
+              <div className="input-group-append">
+                <button
+                  className="btn btn-outline-secondary"
+                  type="button"
+                  onClick={this.getMoviesByActor}
+                >
+                  Search Actor
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="list row">
+            <div className="input-group mb-3">
+              <input
+                type="number"
+                className="form-control"
+                placeholder="Longitud"
+                value={searchLongitud}
+                onChange={this.onChangeSearchLongitud}
+              />
+              <input
+                type="number"
+                className="form-control"
+                placeholder="Latitud"
+                value={searchLatitud}
+                onChange={this.onChangeSearchLatitud}
+              />
+              <div className="input-group-append">
+                <button
+                  className="btn btn-outline-secondary"
+                  type="button"
+                  onClick={this.getLocation}
+                >
+                  Search by location
                 </button>
               </div>
             </div>
@@ -276,23 +325,23 @@ export default class ActorsList extends Component {
             </ul>
           </div>,
           <div className="col-md-3">
-          <h4>Por estudios del director</h4>
-          <ul className="list-group">
-            {results[0] && results[0].porEstilo &&
-              results[0].porEstudiosDeDirector.map((result, index) => (
-                <li
-                  className={
-                    "list-group-item " +
-                    (index + "b" === currentIndex ? "active" : "")
-                  }
-                  onClick={() => this.setActiveResult(result, index + "b")}
-                  key={index}
-                >
-                  {result._id}
-                </li>
-              ))}
-          </ul>
-        </div>,
+            <h4>Por estudios del director</h4>
+            <ul className="list-group">
+              {results[0] && results[0].porEstilo &&
+                results[0].porEstudiosDeDirector.map((result, index) => (
+                  <li
+                    className={
+                      "list-group-item " +
+                      (index + "b" === currentIndex ? "active" : "")
+                    }
+                    onClick={() => this.setActiveResult(result, index + "b")}
+                    key={index}
+                  >
+                    {result._id}
+                  </li>
+                ))}
+            </ul>
+          </div>,
           <div className="col-md-3">
             {currentResult ? (
               <div>
@@ -318,6 +367,165 @@ export default class ActorsList extends Component {
               )}
           </div>,
           ]
+        ) : (<div></div>)}
+
+        {currentAggregation == 2 ? (
+          [<div className="col-md-4">
+            <h4>Peliculas por pais de actor</h4>
+            <ul className="list-group">
+              {results &&
+                results.map((result, index) => (
+                  <li
+                    className={
+                      "list-group-item " +
+                      (index === currentIndex ? "active" : "")
+                    }
+                    onClick={() => this.setActiveResult(result, index)}
+                    key={index}
+                  >
+                    {result.nombre}
+                  </li>
+                ))}
+            </ul>
+          </div>,
+          <div className="col-md-4">
+            {currentResult ? (
+              <div>
+                <h4>Peliculas</h4>
+                <div>
+                  <label>
+                    <strong>Nombre:</strong>
+                  </label>{" "}
+                  {currentResult.nombre}
+                </div>
+              </div>
+            ) : (
+                <div>
+                  <br />
+                  <p>Please click on a result...</p>
+                </div>
+              )}
+          </div>]
+        ) : (<div></div>)}
+
+        {currentAggregation == 3 ? (
+          [<div className="col-md-4">
+            <h4>Peliculas por actor</h4>
+            <ul className="list-group">
+              {results &&
+                results.map((result, index) => (
+                  <li
+                    className={
+                      "list-group-item " +
+                      (index === currentIndex ? "active" : "")
+                    }
+                    onClick={() => this.setActiveResult(result, index)}
+                    key={index}
+                  >
+                    {result.nombre}
+                  </li>
+                ))}
+            </ul>
+          </div>,
+          <div className="col-md-4">
+            {currentResult ? (
+              <div>
+                <h4>Peliculas</h4>
+                <div>
+                  <label>
+                    <strong>Nombre:</strong>
+                  </label>{" "}
+                  {currentResult.nombre}
+                </div>
+                <div>
+                  <label>
+                    <strong>Peliculas:</strong>
+                  </label>{" "}
+                  {currentResult.peliculas.toString()}
+                </div>
+              </div>
+            ) : (
+                <div>
+                  <br />
+                  <p>Please click on a result...</p>
+                </div>
+              )}
+          </div>]
+        ) : (<div></div>)}
+        {currentAggregation == 4 ? (
+          [<div className="col-md-4">
+            <h4>GeoNear</h4>
+            <ul className="list-group">
+              {results &&
+                results.map((result, index) => (
+                  <li
+                    className={
+                      "list-group-item " +
+                      (index === currentIndex ? "active" : "")
+                    }
+                    onClick={() => this.setActiveResult(result, index)}
+                    key={index}
+                  >
+                    {result.cine}
+                  </li>
+                ))}
+            </ul>
+          </div>,
+          <div className="col-md-4">
+            {currentResult ? (
+              <div>
+                <h4>Funciones</h4>
+                <div>
+                  <label>
+                    <strong>Cine:</strong>
+                  </label>{" "}
+                  {currentResult.cine}
+                </div>
+                <div>
+                  <label>
+                    <strong>Pelicula:</strong>
+                  </label>{" "}
+                  {currentResult.nombre}
+                </div>
+                <div>
+                  <label>
+                    <strong>Horario:</strong>
+                  </label>{" "}
+                  {currentResult.horario}
+                </div>
+                <div>
+                  <label>
+                    <strong>Numero de sala:</strong>
+                  </label>{" "}
+                  {currentResult.sala}
+                </div>
+                <div>
+                  <label>
+                    <strong>Numero de asientos:</strong>
+                  </label>{" "}
+                  {currentResult.asientos}
+                </div>
+                <div>
+                  <label>
+                    <strong>Tipo de sala:</strong>
+                  </label>{" "}
+                  {currentResult.tipo}
+                </div>
+                <div>
+                  <label>
+                    <strong>Precio:</strong>
+                  </label>{" "}
+                  {currentResult.precio}
+                </div>
+
+              </div>
+            ) : (
+                <div>
+                  <br />
+                  <p>Please click on a result...</p>
+                </div>
+              )}
+          </div>]
         ) : (<div></div>)}
 
       </div>
