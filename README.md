@@ -4,9 +4,9 @@
 
 ##### Integrantes:
 1. *Salomon Levy Becherano* - *A01023530* - *TEC SF*
-2. *Sebastian Gonzalo Vives Faus* - *A01025211* - *TEC SF*
-3. *[Poner aquí Nombre y Apellidos del integrante 3]* - *[Poner aquí su Matrícula]* - *[Poner aquí su campus]*
-4. *[Poner aquí Nombre y Apellidos del integrante 4]* - *[Poner aquí su Matrícula]* - *[Poner aquí su campus]*
+2. *Sebastian Gonzalo Vives Faus* - *A01025211* - *TEC CSF*
+3. *Luis Armando Ortiz Revilla* - *A01022320* - *TEC CSF*
+4. *Luis Antonio García García* - *A01021865* - *TEC CSF*
 
 ---
 ## 1. Aspectos generales
