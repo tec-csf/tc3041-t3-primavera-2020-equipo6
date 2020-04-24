@@ -49,7 +49,7 @@ Como parte de la entrega de la tarea, se debe incluir la siguiente información:
 ## 2. Solución
 
 A continuación aparecen descritos los diferentes elementos que forman parte de la solución de la tarea.
-### *link de la aplicaición en la nube: [http://ec2-3-22-119-16.us-east-2.compute.amazonaws.com:8081]
+### *Link de la aplicaición en la nube:* [http://ec2-3-22-119-16.us-east-2.compute.amazonaws.com:8081]
 
 ### 2.1 Modelo de la *base de datos* 
 
