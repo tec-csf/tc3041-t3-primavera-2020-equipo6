@@ -49,6 +49,7 @@ Como parte de la entrega de la tarea, se debe incluir la siguiente información:
 ## 2. Solución
 
 A continuación aparecen descritos los diferentes elementos que forman parte de la solución de la tarea.
+### *Link de la aplicaición en la nube:* [http://ec2-3-22-119-16.us-east-2.compute.amazonaws.com:8081]
 
 ### 2.1 Modelo de la *base de datos* 
 
@@ -63,27 +64,46 @@ Cada documento consiste de un schema, el cual contiene un tipo, variables requer
 
 ### 2.3 Frontend
 
-*[Incluya aquí una explicación de la solución utilizada para el frontend de la tarea. No olvide incluir las ligas o referencias donde se puede encontrar información de los lenguajes de programación, frameworks y librerías utilizadas.]*
+Para el frontend, utilizamos React Native para la creacion y maniuplacion de la Web Page. Intsalamos las librerias/dependencias con yarn/npm (react). Para la base y diseño de la página, se utilizo HTML y estilos CSS en la aplicación. En la carpeta de *src/components*, se encuentran los archivos de cada componente de la Web Page (incluido los aggregate).
+
+*(https://github.com/facebook/create-react-app).*
 
 #### 2.3.1 Lenguaje de programación
+Javascript, HTML, CSS
 #### 2.3.2 Framework
+React
 #### 2.3.3 Librerías de funciones o dependencias
+Node, Bootstrap, Axios, Yarn/NPM
 
 ### 2.4 Backend
 
-*[Incluya aquí una explicación de la solución utilizada para el backend de la tarea. No olvide incluir las ligas o referencias donde se puede encontrar información de los lenguajes de programación, frameworks y librerías utilizadas.]*
+Para el *backend*, tenemos nuestra base de datos en *MongoAtlas*; para probar los queries y agregaciones utilizamos *MongoDBCompass*; Para probar los POST y GET de los queries y agregaciones utilizamos *Postman*. En la carpeta de *models* tenemos el *schema* de cada uno de los documentos, y en la carpeta de *controllers* tenemos cada controlador de cada documento, donde agarra su *schema* de *models* yse hacen los POST.
 
 #### 2.4.1 Lenguaje de programación
+Javascript, JSON.
 #### 2.4.2 Framework
+Mongoose
 #### 2.4.3 Librerías de funciones o dependencias
+Express, Node, Mongoose
 
 ## 2.5 Pasos a seguir para utilizar la aplicación
 
-*[Incluya aquí una guía paso a paso para poder utilizar la aplicación, desde la clonación del repositorio hasta el despliegue de la solución en una plataforma en la nube.]*
+#### 1. Clonar el repositorio utilizando github, seleccionando la carpeta deseada en donde clonar el repositorio y correr el comando: [$git clone https://github.com/tec-csf/tc3041-t3-primavera-2020-equipo6.git]
+#### 2. Entrar al repositorio clonado, donde se pueden ver todas las carpetas y archivos del proyecto.
+#### 3. Entrar a la carpeta *frontend*, abrir una terminal CMD y correr el comando: *npm install*. Despues de unos cuantos segundos las librerias necesarias seran descargadas en tu ordenador.
+#### 4. Nos volvemos a la carpeta principal, y repetimos el paso *3* en la carpeta *backend*.
+#### 5. Una vez instaladas las dependencias, utilizamos el comando *node server.js* dentro de la carpeta *backend* para iniciar el servidor en el puerto 8080 y conectarnos a la base de datos.
+#### 6. Nos regresamos a la carpeta de *frontend* y volvemos a abrir la terminal, donde corremos el comando *npm start* para iniciar el frontend de la web application. En unos segundos se nos abrirá una nueva pestaña en nuestro navegador de preferencia con la web page.
+#### 7. La web page nos recibe en la seccion de *Directores*, donde podemos ver varios botones y funcionalidades *CRUD*, en la barra superior se encuentran los registros de "Director, Actor, Pelicula, Proyeccion, Sala y Cine".
+![](database/page1.png)
+#### 8. En la barra de *Search*, podemos buscar por nombre a los Directores, Actores, Peliculas y Cines. En el caso de Proyeccion es por precio y Sala es por numero.
+![](database/pagesearch.png)
+#### 9. Si seleccionamos un nombre, nos da el resto de la información sobre el/ella y la opción de editarlo.
+![](database/pageselect.png)
+#### 10. Dentro del editor, se pueden modificar todas las propiedades del objeto (incluido el ID, pero si llegara a coincidir con otro, la edicion sera rechazada). Tambien, se puede eliminar el objeto con el boton rojo de *Delete*.
+![](database/pageedit.png)
 
 ## 3. Referencias
-
-*[Incluya aquí las referencias a sitios de interés, datasets y cualquier otra información que haya utilizado para realizar la tarea y que le puedan ser de utilidad a otras personas que quieran usarlo como referencia]*
 
 https://medium.com/@nishankjaintdk/setting-up-a-node-js-app-on-a-linux-ami-on-an-aws-ec2-instance-with-nginx-59cbc1bcc68c
 
